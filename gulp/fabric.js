@@ -61,7 +61,7 @@ var monthNames = ["January", "February", "March",
                     "August", "September", "October",
                     "November", "December"];
 var bannerTemplate = ['/**',
-      ' * <%= pkg.name %> <%= pkg.version %>',
+      ' * Office UI Fabric <%= pkg.version %>',
       ' * <%= pkg.description %>',
       ' **/',
       ''].join('\n');
@@ -682,9 +682,9 @@ gulp.task('watch:fabric-components', ['build-fabric-components', 'fabric-compone
 });
 
 // Watches all src fabric components but, builds the samples only
-gulp.task('watch:component-samples', ['build-component-samples', 'samples-index-build-components', 'fabric-server', 'component-samples-finished'], function () {
+gulp.task('watch:component-samples', ['build-component-samples', 'build-components-page', 'fabric-server',  'fabric-all-server'], function () {
     return gulp.watch(paths.componentsPath + '/**/*', batch(function (events, done) {
-        runSequence('build-component-samples', 'samples-index-build-all', 'component-samples-updated', done);
+        runSequence('build-component-samples', done);
     }));
 });
 
